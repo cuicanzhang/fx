@@ -23,15 +23,25 @@ namespace fx
     {
         public MainWindow()
         {
+            InitializeComponent();
             conn.Init();
-
-
+            InitLayout();
             
+        }
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch { }
         }
         private void InitLayout()
         {
+            
 
-            GMain.ShowGridLines = true;
+            //GMain.ShowGridLines = true;
+
             GMain.RowDefinitions.Add(new RowDefinition()); //退出按钮
             //GMain.RowDefinitions[0].Height = new GridLength(20, GridUnitType.Pixel); ;
             GMain.RowDefinitions[0].Height = new GridLength(20, GridUnitType.Pixel); 
@@ -53,8 +63,8 @@ namespace fx
             DataGrid dispDG = new DataGrid
             {
                 Name = "dispDG",
-                Height = 200,
-                Width = 320,
+                Height = 540,
+                Width = 170,
                 //ItemsSource = " { Binding}",
                 FontSize = 12,
                 HorizontalAlignment =HorizontalAlignment.Left,
@@ -82,59 +92,88 @@ namespace fx
             GMainBtn.ColumnDefinitions.Add(new ColumnDefinition());
             GMainBtn.ColumnDefinitions.Add(new ColumnDefinition());
             GMainBtn.ColumnDefinitions.Add(new ColumnDefinition());
+            GMainBtn.ColumnDefinitions.Add(new ColumnDefinition());
+            GMainBtn.ColumnDefinitions.Add(new ColumnDefinition());
             GMainBtn.ColumnDefinitions[0].Width =new GridLength();
             GMainBtn.ColumnDefinitions[1].Width = new GridLength();
             GMainBtn.ColumnDefinitions[2].Width = new GridLength();
             GMainBtn.ColumnDefinitions[3].Width = new GridLength();
+            GMainBtn.ColumnDefinitions[4].Width = new GridLength();
+            GMainBtn.ColumnDefinitions[5].Width = new GridLength();
+            Label qhLB = new Label
+            {
+                Content = "期号:",
+
+                FontSize = 16,
+            };
+            qhLB.SetValue(Grid.RowProperty, 0);
+            qhLB.SetValue(Grid.ColumnProperty, 0);
+            GMainBtn.Children.Add(qhLB);
+
+            Label dtLB = new Label
+            {
+                Name = "dtLB",
+                Content = DateTime.Now.ToString("yyMMdd")+"0",
+                
+                FontSize=16,
+            };
+            dtLB.SetValue(Grid.RowProperty, 0);
+            dtLB.SetValue(Grid.ColumnProperty, 1);
+            GMainBtn.Children.Add(dtLB);
+
             TextBox qhTB = new TextBox
             {
                 Name = "qhTB",
                 Height = 23,
-                Width = 100,
-                MaxLength = 3,
+                Width = 40,
+                FontSize = 16,
+                MaxLength = 2,
 
             };
             PreviewKeyDown += new KeyEventHandler(checkNumber_PreviewKeyDown);
             qhTB.SetValue(Grid.RowProperty,0);
-            qhTB.SetValue(Grid.ColumnProperty, 0);
+            qhTB.SetValue(Grid.ColumnProperty, 2);
             GMainBtn.Children.Add(qhTB);
 
             TextBox jhTB = new TextBox
             {
                 Name = "jhTB",
                 Height = 23,
-                Width = 100,
+                Width = 60,
+                FontSize = 16,
                 MaxLength = 3,
             };
             PreviewKeyDown += new KeyEventHandler(checkNumber1to6_PreviewKeyDown);
             jhTB.SetValue(Grid.RowProperty, 0);
-            jhTB.SetValue(Grid.ColumnProperty, 1);
+            jhTB.SetValue(Grid.ColumnProperty, 3);
             GMainBtn.Children.Add(jhTB);
 
             Button addBtn = new Button
             {
                 Name = "addBtn",
                 Content = "添加",
-                Width = 30,
+                Width = 50,
+                Height = 23,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness(0, 0, 0, 0)
             };
             addBtn.Click += new RoutedEventHandler(addBtn_Click);
             addBtn.SetValue(Grid.RowProperty, 0);
-            addBtn.SetValue(Grid.ColumnProperty, 2);
+            addBtn.SetValue(Grid.ColumnProperty, 4);
             GMainBtn.Children.Add(addBtn);
 
             Button showBtn = new Button
             {
                 Name = "showBtn",
                 Content = "显示",
-                Width = 30,
+                Width = 50,
+                Height=23,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness(0, 0, 0, 0)
             };
             showBtn.Click += new RoutedEventHandler(dispBtn_Click);
             showBtn.SetValue(Grid.RowProperty, 0);
-            showBtn.SetValue(Grid.ColumnProperty, 3);
+            showBtn.SetValue(Grid.ColumnProperty, 5);
             GMainBtn.Children.Add(showBtn);
 
 
@@ -151,34 +190,46 @@ namespace fx
         }
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            foreach (var c in GMain.Children)
+            string dt = "";
+            string qh = "";
+            string jh = "";
+
+            foreach (var g in GMain.Children)
             {
-                if (c is TextBox)
+                if (g is Grid)
                 {
-                    string qh="";
-                    string jh="";
-                    TextBox tb = (TextBox)c;
-                    if (tb.Name == "qhTB")
+                    Grid grid = (Grid)g;
+                    foreach (var c in grid.Children)
                     {
-                        qh = tb.Text.Replace(" ", "");
-                    }
-                    if (tb.Name == "jhTB")
-                    {
-                        jh = tb.Text.Replace(" ", "");
-                    }
-                    if (qh != "" && jh != "")
-                    {
-                        Core.SqlAction.AddH(initDic(qh, jh));
+                        if (c is Label)
+                        {
+                            Label lb = (Label)c;
+                            if (lb.Name == "dtLB")
+                            {
+                                dt = lb.Content.ToString();
+                            }
+                        }
+                        if (c is TextBox)
+                        {
+
+                            TextBox tb = (TextBox)c;
+                            if (tb.Name == "qhTB")
+                            {
+                                qh = tb.Text.Replace(" ", "");
+                            }
+                            if (tb.Name == "jhTB")
+                            {
+                                jh = tb.Text.Replace(" ", "");
+                            }
+                            if (qh != "" && jh != "")
+                            {
+                                Core.SqlAction.AddH(initDic(dt+qh, jh));
+                            }
+                        }
+
                     }
                 }
-
-            }
-
-
-            ymdLB.Content = DateTime.Now.ToString("yyMMdd");
-
-            
+            }           
         }
         private Dictionary<string, object> initDic(string qh, string jh)
         {
