@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\Ming\Source\Repos\fx\fx\obj\Debug\
+C:\Users\Ming\Source\Repos\fx\fx\obj\Release\
 fx
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Ming\Source\Repos\fx\fx\App.xaml
 11151548125
 
@@ -16,5 +16,5 @@ C:\Users\Ming\Source\Repos\fx\fx\App.xaml
 14-1855718188
 MainWindow.xaml;
 
-False
+True
 

@@ -30,8 +30,8 @@ namespace fx
         }
         private void InitLayout()
         {
-            
 
+            GMain.ShowGridLines = true;
             GMain.RowDefinitions.Add(new RowDefinition()); //退出按钮
             //GMain.RowDefinitions[0].Height = new GridLength(20, GridUnitType.Pixel); ;
             GMain.RowDefinitions[0].Height = new GridLength(20, GridUnitType.Pixel); 
