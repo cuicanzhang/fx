@@ -1,0 +1,17 @@
+C:\Users\Canlan\Source\Repos\fx\fx\bin\Debug\fx.exe.config
+C:\Users\Canlan\Source\Repos\fx\fx\bin\Debug\fx.exe
+C:\Users\Canlan\Source\Repos\fx\fx\bin\Debug\fx.pdb
+C:\Users\Canlan\Source\Repos\fx\fx\bin\Debug\System.Data.SQLite.dll
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.csprojAssemblyReference.cache
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\MainWindow.g.cs
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\App.g.cs
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx_MarkupCompile.cache
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx_MarkupCompile.lref
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\MainWindow.baml
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.g.resources
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.Properties.Resources.resources
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.csproj.GenerateResource.cache
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.csproj.CoreCompileInputs.cache
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.csproj.CopyComplete
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.exe
+C:\Users\Canlan\Source\Repos\fx\fx\obj\Debug\fx.pdb
